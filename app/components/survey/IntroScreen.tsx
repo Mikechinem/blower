@@ -13,10 +13,12 @@ const FEATURES = [
 ]
 
 const SOCIAL_PROOF = [
-  { avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=64&h=64&fit=crop&crop=face', name: 'Chioma A.' },
-  { avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face', name: 'Musa T.' },
-  { avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop&crop=face', name: 'Adebayo F.' },
+  { avatar: 'https://ik.imagekit.io/j1e78ujalr/social-proof/sp3.png', name: 'Chioma A.' },
+  { avatar: 'https://ik.imagekit.io/j1e78ujalr/social-proof/sp2.png', name: 'Musa T.' },
+  { avatar: 'https://ik.imagekit.io/j1e78ujalr/social-proof/sp1.png', name: 'Adebayo F.' },
 ]
+
+const HERO_IMAGE = 'https://ik.imagekit.io/j1e78ujalr/heroimg2.png'
 
 export default function IntroScreen({ onStart }: IntroScreenProps) {
   return (
@@ -25,11 +27,12 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
       {/* ── Hero image ── */}
       <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden mb-6">
         <Image
-          src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop"
-          alt="Happy pain-free woman enjoying life"
+          src={HERO_IMAGE}
+          alt="Happy pain-free Nigerian woman enjoying life"
           fill
           className="object-cover"
           priority
+          unoptimized
         />
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#1B3A2D]/80 via-[#1B3A2D]/20 to-transparent" />
@@ -45,7 +48,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
         {/* Caption at bottom of image */}
         <div className="absolute bottom-4 left-4 right-4">
           <p className="text-white/90 text-sm font-medium">
-            Join <span className="text-[#E8B96A] font-bold">3,400+</span> Nigerians who found lasting relief
+            Join <span className="text-[#E8B96A] font-bold">3,400+</span> Africans who found lasting relief
           </p>
         </div>
       </div>
@@ -80,13 +83,14 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           ))}
         </div>
 
-        {/* Side lifestyle image */}
+        {/* Side lifestyle image — same hero cropped to top */}
         <div className="relative w-28 sm:w-36 rounded-2xl overflow-hidden flex-shrink-0">
           <Image
-            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop"
-            alt="Active healthy person"
+            src={HERO_IMAGE}
+            alt="Happy pain-free Nigerian woman"
             fill
-            className="object-cover"
+            className="object-cover object-top"
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1B3A2D]/30 to-transparent" />
         </div>
@@ -98,7 +102,13 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
           {SOCIAL_PROOF.map((p) => (
             <div key={p.name} className="relative w-8 h-8 rounded-full overflow-hidden
               border-2 border-white shadow-sm">
-              <Image src={p.avatar} alt={p.name} fill className="object-cover" />
+              <Image
+                src={p.avatar}
+                alt={p.name}
+                fill
+                className="object-cover"
+                unoptimized
+              />
             </div>
           ))}
         </div>

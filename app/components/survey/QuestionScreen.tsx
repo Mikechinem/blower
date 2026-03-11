@@ -20,20 +20,20 @@ interface QuestionScreenProps {
   nextLabel?: string
 }
 
-// Contextual image for each question
+// ── Real ImageKit images ──
 const Q_IMAGES: Record<string, { src: string; alt: string }> = {
-  q1:  { src: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&h=300&fit=crop', alt: 'Person experiencing body pain' },
-  q2:  { src: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=300&fit=crop', alt: 'Person reflecting on health journey' },
-  q3:  { src: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&h=300&fit=crop', alt: 'Person waking up in the morning' },
-  q4:  { src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=300&fit=crop', alt: 'Person assessing pain level' },
-  q5:  { src: 'https://images.unsplash.com/photo-1493836512294-502baa1986e2?w=800&h=300&fit=crop', alt: 'Person affected by pain in daily life' },
-  q6:  { src: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&h=300&fit=crop', alt: 'Various treatment options' },
-  q7:  { src: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=300&fit=crop', alt: 'Frustrated with treatment results' },
-  q8:  { src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=300&fit=crop', alt: 'Person at work desk' },
-  q9:  { src: 'https://images.unsplash.com/photo-1541781408260-3b23a53b9e87?w=800&h=300&fit=crop', alt: 'Person sleeping peacefully' },
-  q10: { src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=300&fit=crop', alt: 'People of different ages' },
-  q11: { src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=300&fit=crop', alt: 'Happy family enjoying life pain free' },
-  q12: { src: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=800&h=300&fit=crop', alt: 'Person ready to take action' },
+  q1:  { src: 'https://ik.imagekit.io/j1e78ujalr/Terahartz%20blower/sm1.png?updatedAt=1773228883756', alt: 'Person experiencing body pain' },
+  q2:  { src: 'https://ik.imagekit.io/j1e78ujalr/Terahartz%20blower/sm2.png?updatedAt=1773228883510', alt: 'Person reflecting on health journey' },
+  q3:  { src: 'https://ik.imagekit.io/j1e78ujalr/Terahartz%20blower/sm3.png?updatedAt=1773228883932', alt: 'Person waking up in the morning' },
+  q4:  { src: 'https://ik.imagekit.io/j1e78ujalr/Terahartz%20blower/sm4.png?updatedAt=1773228883289', alt: 'Person assessing pain level' },
+  q5:  { src: 'https://ik.imagekit.io/j1e78ujalr/Terahartz%20blower/sm5.png?updatedAt=1773228884959', alt: 'Person affected by pain in daily life' },
+  q6:  { src: 'https://ik.imagekit.io/j1e78ujalr/Terahartz%20blower/sm6.png?updatedAt=1773228884120', alt: 'Various treatment options' },
+  q7:  { src: 'https://ik.imagekit.io/j1e78ujalr/Terahartz%20blower/sm7.png?updatedAt=1773228884215', alt: 'Frustrated with treatment results' },
+  q8:  { src: 'https://ik.imagekit.io/j1e78ujalr/sm8.png?updatedAt=1773230033803',                    alt: 'Person at work or daily routine' },
+  q9:  { src: 'https://ik.imagekit.io/j1e78ujalr/sm9.png?updatedAt=1773230032907',                    alt: 'Person struggling with sleep' },
+  q10: { src: 'https://ik.imagekit.io/j1e78ujalr/sm10.png?updatedAt=1773230034031',                   alt: 'People of different age groups' },
+  q11: { src: 'https://ik.imagekit.io/j1e78ujalr/sm11.png?updatedAt=1773230034192',                   alt: 'Happy family enjoying pain free life' },
+  q12: { src: 'https://ik.imagekit.io/j1e78ujalr/sm12.2.png',                                         alt: 'Person ready to take action' },
 }
 
 export default function QuestionScreen({
@@ -77,11 +77,12 @@ export default function QuestionScreen({
             alt={qImage.alt}
             fill
             className="object-cover"
+            unoptimized
           />
-          {/* Dark gradient so stage label sits cleanly on top */}
+          {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#1B3A2D]/75 via-[#1B3A2D]/30 to-transparent" />
 
-          {/* Stage label overlaid on image */}
+          {/* Stage label + question number on image */}
           <div className="absolute bottom-4 left-4 right-4">
             <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#E8B96A] mb-1">
               {config.stage}

@@ -21,7 +21,7 @@ export default function SurveyHeader({ currentQ }: SurveyHeaderProps) {
       {/* Brand bar */}
       <div className="flex items-center justify-center gap-2.5 px-6 py-3.5">
         <span className="font-serif text-white text-lg font-semibold tracking-wide">
-          Daps Wellness Home
+          Emesol Wellness Home
         </span>
         <span className="bg-[#C8923A] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full tracking-widest uppercase">
           Free Assessment
