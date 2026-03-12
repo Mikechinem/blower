@@ -1,5 +1,5 @@
 import SurveyFunnel from '@/components/survey/surveyFunnel'
 
 export default function SurveyPage() {
-  return <SurveyFunnel />
+  return <SurveyFunnel introVariant="B" />
 }

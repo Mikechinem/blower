@@ -5,7 +5,8 @@ import type { SurveyScreen, SurveyAnswers } from './types'
 import { QUESTIONS } from './data'
 
 import SurveyHeader from './surveyHeader'   // 👈 fixed casing
-import IntroScreen from './IntroScreen'
+import IntroScreenA from './IntroScreenA'
+import IntroScreenB from './IntroScreenB'
 import QuestionScreen from './QuestionScreen'
 import LoadingScreen from './LoadingScreen'
 import ResultsScreen from './ResultsScreen'
@@ -13,7 +14,7 @@ import SuccessScreen from './SuccessScreen'
 
 const Q_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-export default function SurveyFunnel() {        // 👈 fixed capital S
+export default function SurveyFunnel({ introVariant = 'B' }: { introVariant?: 'A' | 'B' }) {        // 👈 fixed capital S
   const [screen, setScreen] = useState<SurveyScreen>('intro')
   const [answers, setAnswers] = useState<SurveyAnswers>({})
   const [multiAnswers, setMultiAnswers] = useState<Record<string, string[]>>({})
@@ -85,9 +86,13 @@ export default function SurveyFunnel() {        // 👈 fixed capital S
 
       <main className="max-w-2xl mx-auto px-5 py-8 pb-16">
 
-        {screen === 'intro' && (
-          <IntroScreen onStart={() => { setScreen('q1'); window.scrollTo({ top: 0, behavior: 'smooth' }) }} />
-        )}
+        {screen === 'intro' && introVariant === 'A' && (
+  <IntroScreenA onStart={() => { setScreen('q1'); window.scrollTo({ top: 0, behavior: 'smooth' }) }} />
+)}
+
+{screen === 'intro' && introVariant === 'B' && (
+  <IntroScreenB onStart={() => { setScreen('q1'); window.scrollTo({ top: 0, behavior: 'smooth' }) }} />
+)}
 
         {Q_ORDER.filter((n) => n !== 4).map((qNum) => {
           const config = getConfig(qNum)
