@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import FacebookPixel from '@/components/survey/facebookPixel'
 import { Geist, Geist_Mono, Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${dmSans.variable} antialiased`}
       >
+    <FacebookPixel />
         {children}
       </body>
     </html>

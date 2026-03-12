@@ -1,6 +1,8 @@
 'use client'
 
 import Image from 'next/image'
+import { useEffect } from 'react'
+import { fbEvent } from './facebookPixel'
 import type { SurveyAnswers } from './types'
 import { buildDiagnosis } from './diagnosisBuilder'
 import OrderForm from './OrderForm'
@@ -41,6 +43,12 @@ const TESTIMONIALS = [
 
 export default function ResultsScreen({ answers, onOrderSuccess }: ResultsScreenProps) {
   const dx = buildDiagnosis(answers)
+
+  useEffect(() => {
+  fbEvent('ViewContent', { content_name: 'Health Assessment Results' })
+  fetch('/api/events', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ eventName: 'ViewContent', customData: { content_name: 'Health Assessment Results' } }) })
+}, [])
 
   return (
     <div className="animate-[fadeUp_0.6s_ease_both]">

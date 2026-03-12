@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-
+import { fbEvent } from './facebookPixel'
 interface IntroScreenProps {
   onStart: () => void
 }
@@ -120,7 +120,15 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
       {/* ── CTA ── */}
       <div className="text-center">
         <button
-          onClick={onStart}
+         onClick={() => {
+         fbEvent('Lead', { content_name: 'variant_a_classic' })
+         fetch('/api/events', {
+         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventName: 'Lead', customData: { content_name: 'variant_a_classic' } }),
+        })
+       onStart()
+        }}
           className="bg-[#C8923A] text-white font-bold text-base px-10 py-4 rounded-2xl
             tracking-wide transition-all duration-250 cursor-pointer w-full sm:w-auto
             shadow-[0_6px_28px_rgba(200,146,58,0.35)]

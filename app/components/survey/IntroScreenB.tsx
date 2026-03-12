@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-
+import { fbEvent } from './facebookPixel'
 interface IntroScreenProps {
   onStart: () => void
 }
@@ -133,16 +133,24 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
 
       {/* ── ⑧ CTA — curiosity-driven ── */}
       <div className="text-center">
-        <button
-          onClick={onStart}
-          className="bg-[#C8923A] text-white font-bold text-base px-8 py-4 rounded-2xl
-            tracking-wide transition-all duration-250 cursor-pointer w-full
-            shadow-[0_6px_28px_rgba(200,146,58,0.35)]
-            hover:bg-[#b57e2e] hover:-translate-y-0.5
-            hover:shadow-[0_10px_36px_rgba(200,146,58,0.45)]"
-        >
-          Find Out Why You Are Still in Pain →
-        </button>
+       <button
+    onClick={() => {
+    fbEvent('Lead', { content_name: 'variant_b_optimised' })
+    fetch('/api/events', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ eventName: 'Lead', customData: { content_name: 'variant_b_optimised' } }),
+  })
+  onStart()
+}}
+  className="bg-[#C8923A] text-white font-bold text-base px-8 py-4 rounded-2xl
+    tracking-wide transition-all duration-250 cursor-pointer w-full
+    shadow-[0_6px_28px_rgba(200,146,58,0.35)]
+    hover:bg-[#b57e2e] hover:-translate-y-0.5
+    hover:shadow-[0_10px_36px_rgba(200,146,58,0.45)]"
+>
+  Find Out Why You Are Still in Pain →
+</button>
 
         {/* Micro reassurance */}
         <p className="text-xs text-[#6B6B6B] mt-3 leading-relaxed">
